@@ -11,6 +11,8 @@
 		DD0C1BD61BFE884E00383F29 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C1BD31BFE884E00383F29 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DD0C1BD71BFE884E00383F29 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C1BD41BFE884E00383F29 /* RealmSwift.framework */; };
 		DD0C1BD81BFE884E00383F29 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD0C1BD41BFE884E00383F29 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD8FB55A1C02210A0040FEF6 /* LiveEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8FB5591C02210A0040FEF6 /* LiveEventObserver.swift */; };
+		DD8FB5631C02241F0040FEF6 /* PlayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8FB5621C02241F0040FEF6 /* PlayerBuilder.swift */; };
 		DD9A554B1BFE8511004869A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9A554A1BFE8511004869A4 /* AppDelegate.swift */; };
 		DD9A554D1BFE8511004869A4 /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9A554C1BFE8511004869A4 /* VideosViewController.swift */; };
 		DD9A55501BFE8511004869A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD9A554E1BFE8511004869A4 /* Main.storyboard */; };
@@ -101,6 +103,8 @@
 /* Begin PBXFileReference section */
 		DD0C1BD31BFE884E00383F29 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = vendor/Realm.framework; sourceTree = "<group>"; };
 		DD0C1BD41BFE884E00383F29 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = vendor/RealmSwift.framework; sourceTree = "<group>"; };
+		DD8FB5591C02210A0040FEF6 /* LiveEventObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LiveEventObserver.swift; path = WWDC/Core/LiveEventObserver.swift; sourceTree = "<group>"; };
+		DD8FB5621C02241F0040FEF6 /* PlayerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerBuilder.swift; sourceTree = "<group>"; };
 		DD9A55471BFE8511004869A4 /* WWDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD9A554A1BFE8511004869A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD9A554C1BFE8511004869A4 /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +132,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD8FB5611C02240A0040FEF6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DD8FB5621C02241F0040FEF6 /* PlayerBuilder.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		DD9A553E1BFE8511004869A4 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +161,7 @@
 		DD9A55491BFE8511004869A4 /* WWDC */ = {
 			isa = PBXGroup;
 			children = (
+				DD8FB5611C02240A0040FEF6 /* Helpers */,
 				DDE490241BFF688C001F157B /* Controllers */,
 				DD9A554A1BFE8511004869A4 /* AppDelegate.swift */,
 				DD9A554E1BFE8511004869A4 /* Main.storyboard */,
@@ -161,6 +174,7 @@
 		DDE48FF11BFF61FE001F157B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DD8FB5591C02210A0040FEF6 /* LiveEventObserver.swift */,
 				DDE490271BFF7BD1001F157B /* Models.swift */,
 				DDE490281BFF7BD1001F157B /* WWDCDatabase.swift */,
 			);
@@ -350,6 +364,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD9A554D1BFE8511004869A4 /* VideosViewController.swift in Sources */,
+				DD8FB55A1C02210A0040FEF6 /* LiveEventObserver.swift in Sources */,
+				DD8FB5631C02241F0040FEF6 /* PlayerBuilder.swift in Sources */,
 				DDE4902A1BFF7BD1001F157B /* WWDCDatabase.swift in Sources */,
 				DD9A554B1BFE8511004869A4 /* AppDelegate.swift in Sources */,
 				DDE490261BFF68A3001F157B /* DetailViewController.swift in Sources */,

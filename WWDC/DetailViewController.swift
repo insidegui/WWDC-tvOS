@@ -48,26 +48,8 @@ class DetailViewController: UIViewController {
             videoURL = url
         }
         
-        // build playerItem and It's metadata
-        let playerItem = AVPlayerItem(URL: NSURL(string: videoURL)!)
-        let titleMeta = AVMutableMetadataItem()
-        titleMeta.locale = NSLocale.currentLocale()
-        titleMeta.keySpace = AVMetadataKeySpaceCommon
-        titleMeta.key = AVMetadataCommonKeyTitle
-        titleMeta.value = session.title
-        let descriptionMeta = AVMutableMetadataItem()
-        descriptionMeta.locale = NSLocale.currentLocale()
-        descriptionMeta.keySpace = AVMetadataKeySpaceCommon
-        descriptionMeta.key = AVMetadataCommonKeyDescription
-        descriptionMeta.value = session.summary
-        playerItem.externalMetadata.append(titleMeta)
-        playerItem.externalMetadata.append(descriptionMeta)
-        
-        // build player and playerController
-        player = AVPlayer(playerItem: playerItem)
-        
-        let playerController = AVPlayerViewController()
-        playerController.player = player
+        let (playerController, newPlayer) = PlayerBuilder.buildPlayerViewController(videoURL, title: session.title, description: session.summary)
+        player = newPlayer
         
         presentViewController(playerController, animated: true) { [unowned self] in
             self.timeObserver = self.player?.addPeriodicTimeObserverForInterval(CMTimeMakeWithSeconds(5, 1), queue: dispatch_get_main_queue()) { currentTime in
