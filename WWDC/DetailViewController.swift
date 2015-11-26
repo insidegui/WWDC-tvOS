@@ -43,12 +43,7 @@ class DetailViewController: UIViewController {
     var timeObserver: AnyObject?
 
     @IBAction func watch(sender: UIButton) {
-        var videoURL = session.videoURL
-        if let url = session.hd_url {
-            videoURL = url
-        }
-        
-        let (playerController, newPlayer) = PlayerBuilder.buildPlayerViewController(videoURL, title: session.title, description: session.summary)
+        let (playerController, newPlayer) = PlayerBuilder.buildPlayerViewController(session.ATVURL.absoluteString, title: session.title, description: session.summary)
         player = newPlayer
         
         presentViewController(playerController, animated: true) { [unowned self] in

@@ -99,6 +99,19 @@ class Session: Object {
         }
     }
     
+    var ATVURL: NSURL {
+        if year > 2013 {
+            if let url = hd_url {
+                return NSURL(string: url)!
+            } else {
+                return NSURL(string: videoURL)!
+            }
+        } else {
+            // for some reason, download URLs for videos from 2013 and below are not working
+            return NSURL(string: videoURL)!
+        }
+    }
+    
     var subtitle: String {
         return "\(year) | \(track) | \(focus)"
     }
