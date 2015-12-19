@@ -16,7 +16,7 @@ Based on [WWDC for OS X](https://github.com/insidegui/WWDC).
 
 The only steps required before you build is to pull down the code and submodules:
 
-	$ git clone --recursive https://github.com/insidegui/WWDC.git
+	$ git clone --recursive https://github.com/insidegui/WWDC-tvOS.git
 	
 ### AppStore?
 
