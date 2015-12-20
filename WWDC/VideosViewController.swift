@@ -28,7 +28,11 @@ class VideosViewController: UITableViewController {
         didSet {
             guard sessions != nil else { return }
 
+            let previouslySelectedRow = tableView.indexPathForSelectedRow
+            
             tableView.reloadData()
+            
+            tableView.selectRowAtIndexPath(previouslySelectedRow ?? NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: .Top)
         }
     }
     

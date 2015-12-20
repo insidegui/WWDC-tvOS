@@ -24,7 +24,11 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        titleLabel.hidden = true
+        subtitleLabel.hidden = true
+        descriptionView.hidden = true
+        
         updateUI()
     }
     
@@ -35,6 +39,10 @@ class DetailViewController: UIViewController {
         titleLabel.text = session.title
         subtitleLabel.text = session.subtitle
         descriptionView.text = session.summary
+        
+        titleLabel.hidden = false
+        subtitleLabel.hidden = false
+        descriptionView.hidden = false
     }
     
     // MARK: Playback
