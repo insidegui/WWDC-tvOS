@@ -101,6 +101,29 @@ typealias SessionsUpdatedCallback = () -> Void
         return realm.objects(Session.self).sorted(sortDescriptorsForSessionList)
     }
     
+    /// Returns the list of sessions available, grouped by years
+    /// - Warning: can only be used from the main thread
+    var sessionsGroupedByYear: [Int:Results<Session>] {
+        guard _sessionsGroupedByYear == nil else { return _sessionsGroupedByYear! }
+        
+        let allSessions = standardSessionList
+        var years = [Int]()
+        for session in allSessions {
+            if years.indexOf(session.year) == nil {
+                years.append(session.year)
+            }
+        }
+        years.sortInPlace { $0 > $1 }
+        
+        _sessionsGroupedByYear = [Int:Results<Session>]()
+        for year in years {
+            _sessionsGroupedByYear![year] = allSessions.filter("year = %d", year)
+        }
+        
+        return _sessionsGroupedByYear!
+    }
+    var _sessionsGroupedByYear: [Int:Results<Session>]?
+    
     /// #### The best sort descriptors for the list of videos
     /// Orders the videos by year (descending) and session number (ascending)
     lazy var sortDescriptorsForSessionList: [SortDescriptor] = [SortDescriptor(property: "year", ascending: false), SortDescriptor(property: "id", ascending: true)]

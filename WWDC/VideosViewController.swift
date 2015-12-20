@@ -14,25 +14,29 @@ class VideosViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.remembersLastFocusedIndexPath = true
+
         loadSessions()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: Data loading
 
-    var sessions: Results<Session>! {
+    var sessionYears: [Int]! {
+        guard let sessionGroups = sessionGroups else { return nil}
+        
+        return [Int](sessionGroups.keys).sort { $0 > $1 }
+    }
+    var sessionGroups: [Int:Results<Session>]! {
         didSet {
-            guard sessions != nil else { return }
-
-            let previouslySelectedRow = tableView.indexPathForSelectedRow
+            guard sessionGroups != nil else { return }
+            
+            let previouslySelectedPath = tableView.indexPathForSelectedRow
             
             tableView.reloadData()
             
-            tableView.selectRowAtIndexPath(previouslySelectedRow ?? NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: .Top)
+            if sessionGroups.keys.count > 0 {
+                tableView.selectRowAtIndexPath(previouslySelectedPath ?? NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: .Top)
+            }
         }
     }
     
@@ -48,7 +52,7 @@ class VideosViewController: UITableViewController {
     }
     
     func fetchLocalSessions() {
-        sessions = WWDCDatabase.sharedDatabase.standardSessionList
+        sessionGroups = WWDCDatabase.sharedDatabase.sessionsGroupedByYear
     }
     
     // MARK: Table View
@@ -59,19 +63,24 @@ class VideosViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return sessionGroups.keys.count
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "\(sessionYears[section])"
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard sessions != nil else { return 0 }
-        
-        return sessions.count
+        guard sessionGroups != nil else { return 0 }
+
+        return sessionGroups[sessionYears[section]]!.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.videoCellIdentifier)!
         
-        let session = sessions[indexPath.row]
+        let sectionSessions = sessionGroups[sessionYears[indexPath.section]]!
+        let session = sectionSessions[indexPath.row]
         cell.textLabel?.text = session.title
         
         return cell
@@ -88,9 +97,10 @@ class VideosViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        guard let selectedPath = context.nextFocusedIndexPath else { return }
+        guard let indexPath = context.nextFocusedIndexPath else { return }
         
-        selectedSession = sessions[selectedPath.row]
+        let sectionSessions = sessionGroups[sessionYears[indexPath.section]]!
+        selectedSession = sectionSessions[indexPath.row]
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
