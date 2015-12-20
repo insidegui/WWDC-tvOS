@@ -104,7 +104,11 @@ typealias SessionsUpdatedCallback = () -> Void
     /// Returns the list of sessions available, grouped by years
     /// - Warning: can only be used from the main thread
     var sessionsGroupedByYear: [Int:Results<Session>] {
-        guard _sessionsGroupedByYear == nil else { return _sessionsGroupedByYear! }
+        if _sessionsGroupedByYear != nil {
+            if _sessionsGroupedByYear?.count > 0 {
+                return _sessionsGroupedByYear!
+            }
+        }
         
         let allSessions = standardSessionList
         var years = [Int]()
