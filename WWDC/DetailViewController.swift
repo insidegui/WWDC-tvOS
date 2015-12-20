@@ -21,10 +21,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
+    @IBOutlet weak var watchButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        watchButton.hidden = true
         titleLabel.hidden = true
         subtitleLabel.hidden = true
         descriptionView.hidden = true
@@ -40,6 +42,7 @@ class DetailViewController: UIViewController {
         subtitleLabel.text = session.subtitle
         descriptionView.text = session.summary
         
+        watchButton.hidden = false
         titleLabel.hidden = false
         subtitleLabel.hidden = false
         descriptionView.hidden = false

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="uym-eI-Cxp">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="uym-eI-Cxp">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +19,6 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Session title goes here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf9-Zl-CSo">
                                 <rect key="frame" x="88" y="40" width="1122" height="79"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="79" id="znf-KF-t3b"/>
                                 </constraints>
@@ -29,14 +28,12 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015 watchOS iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX2-hw-MAG">
                                 <rect key="frame" x="88" y="127" width="1122" height="37"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqd-q8-rSp">
                                 <rect key="frame" x="62" y="220" width="1161" height="610"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -44,7 +41,6 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3p-4J-0Ri">
                                 <rect key="frame" x="88" y="814" width="190" height="86"/>
-                                <animations/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="Watch"/>
                                 <connections>
@@ -52,7 +48,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <constraints>
                             <constraint firstItem="s3p-4J-0Ri" firstAttribute="leading" secondItem="bFH-Re-zvb" secondAttribute="leadingMargin" constant="68" id="3jm-GD-qmt"/>
                             <constraint firstItem="bUk-ue-F5y" firstAttribute="top" secondItem="Qqd-q8-rSp" secondAttribute="bottom" constant="250" id="4XE-tn-H8S"/>
@@ -72,6 +67,7 @@
                         <outlet property="descriptionView" destination="Qqd-q8-rSp" id="Ay9-dy-d0a"/>
                         <outlet property="subtitleLabel" destination="uX2-hw-MAG" id="ICV-nN-ALY"/>
                         <outlet property="titleLabel" destination="zf9-Zl-CSo" id="f9T-Tc-OdS"/>
+                        <outlet property="watchButton" destination="s3p-4J-0Ri" id="4nW-N1-Hns"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJm-nU-qS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -85,10 +81,10 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="40" sectionFooterHeight="40" id="FDc-rq-syq">
                         <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="video" textLabel="ZeQ-NB-HM6" style="IBUITableViewCellStyleDefault" id="RKs-nw-BwN">
-                                <rect key="frame" x="0.0" y="199" width="594" height="66"/>
+                                <rect key="frame" x="0.0" y="199" width="634" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RKs-nw-BwN" id="thc-uY-ACd">
                                     <rect key="frame" x="0.0" y="0.0" width="618" height="66"/>
@@ -97,15 +93,12 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZeQ-NB-HM6">
                                             <rect key="frame" x="20" y="0.0" width="578" height="66"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
                                 </tableViewCellContentView>
-                                <animations/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -129,7 +122,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jf6-Xx-6tB">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="fWV-E2-ENW" kind="relationship" relationship="rootViewController" id="I2Q-T5-90r"/>
