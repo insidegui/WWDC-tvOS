@@ -1,7 +1,5 @@
 # WWDC app for the new Apple TV
 
-### Important: this is a work in progress, don't expect anything to work (yet) :P
-
 Don't like WWDC's website? Use this app to watch WWDC sessions on your Apple TV.
 
 Based on [WWDC for OS X](https://github.com/insidegui/WWDC).
