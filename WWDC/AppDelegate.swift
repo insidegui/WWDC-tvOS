@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         LiveEventObserver.SharedObserver().start(window!.rootViewController!)
         
@@ -40,6 +39,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        guard let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false) else { return false }
+        
+        if (components.scheme != "wwdc") {
+            return false
+        }
+        guard let host = components.host else { return false }
+        
+        guard let key = url.lastPathComponent else { return false }
+        
+        switch host {
+            case "play":
+                playSessionWithKey("#\(key)")
+            case "show":
+                displaySessionWithKey("#\(key)")
+        default:
+            return false
+        }
+        
+        return true
+    }
+    
+    private var videosViewController: VideosViewController? {
+        guard let navigationController = window?.rootViewController?.childViewControllers[0] as? UINavigationController else { return nil }
+        
+        return navigationController.childViewControllers[0] as? VideosViewController
+    }
+    
+    private func displaySessionWithKey(key: String) {
+        guard let videosVC = videosViewController else { return }
+        videosVC.displaySession(key)
+    }
+    
+    private func playSessionWithKey(key: String) {
+        guard let videosVC = videosViewController else { return }
+        videosVC.playSession(key)
     }
 
 

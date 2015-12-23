@@ -15,7 +15,7 @@ class VideosViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.remembersLastFocusedIndexPath = true
-
+        
         loadSessions()
     }
 
@@ -87,7 +87,7 @@ class VideosViewController: UITableViewController {
     }
     
     // MARK: Session selection
-    
+
     var selectedSession: Session? {
         didSet {
             guard selectedSession != nil else { return }
@@ -99,8 +99,7 @@ class VideosViewController: UITableViewController {
     override func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         guard let indexPath = context.nextFocusedIndexPath else { return }
         
-        let sectionSessions = sessionGroups[sessionYears[indexPath.section]]!
-        selectedSession = sectionSessions[indexPath.row]
+        selectSessionAtIndexPath(indexPath)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -109,7 +108,37 @@ class VideosViewController: UITableViewController {
             detailController.session = selectedSession
         }
     }
+    
+    private func selectSessionAtIndexPath(indexPath: NSIndexPath) {
+        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Middle)
+        
+        let sectionSessions = sessionGroups[sessionYears[indexPath.section]]!
+        selectedSession = sectionSessions[indexPath.row]
+    }
+    
+    private func indexPathForSessionWithKey(key: String) -> NSIndexPath? {
+        guard let session = WWDCDatabase.sharedDatabase.realm.objectForPrimaryKey(Session.self, key: key) else { return nil }
+        
+        var sections = [Int](sessionGroups.keys)
+        sections.sortInPlace { $0 > $1 }
+        
+        guard let section = sections.indexOf(session.year) else { return nil }
+        guard let row = sessionGroups[session.year]?.indexOf(session) else { return nil }
 
+        return NSIndexPath(forRow: row, inSection: section)
+    }
+    
+    // MARK: Session displaying and playback from URLs
+    
+    func displaySession(key: String) {
+        guard let indexPath = indexPathForSessionWithKey(key) else { return }
+        
+        selectSessionAtIndexPath(indexPath)
+    }
+
+    func playSession(key: String) {
+        // TODO: start playing session
+    }
 
 }
 
