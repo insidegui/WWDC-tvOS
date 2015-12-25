@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
     var player: AVPlayer?
     var timeObserver: AnyObject?
 
-    @IBAction func watch(sender: UIButton) {
+    @IBAction func watch(sender: AnyObject?) {
         let (playerController, newPlayer) = PlayerBuilder.buildPlayerViewController(session.ATVURL.absoluteString, title: session.title, description: session.summary)
         player = newPlayer
         

@@ -130,6 +130,13 @@ class VideosViewController: UITableViewController {
     
     // MARK: Session displaying and playback from URLs
     
+    private var detailViewController: DetailViewController? {
+        guard let splitController = parentViewController?.parentViewController else { return nil }
+        guard splitController.childViewControllers.count > 1 else { return nil }
+        
+        return splitController.childViewControllers[1] as? DetailViewController
+    }
+    
     func displaySession(key: String) {
         guard let indexPath = indexPathForSessionWithKey(key) else { return }
         
@@ -137,7 +144,11 @@ class VideosViewController: UITableViewController {
     }
 
     func playSession(key: String) {
-        // TODO: start playing session
+        displaySession(key)
+        
+        guard let detailVC = detailViewController else { return }
+        
+        detailVC.watch(nil)
     }
 
 }
